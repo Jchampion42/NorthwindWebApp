@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        form{
+            width:80%;
+            margin: 0 auto;
+        }
+        label,
+        input {
+            height: 30px;
+            display: inline-block;
+            padding: 5px;
+        }
+        label {
+            width:30%;
+            text-align: right;
+        }
+        label+input{
+            width: 30%;
+            margin: 0 30% 0 4%;
+        }
+        input+input{
+            float:right;
+        }
+        input{
+            border-width: 0.5px;
+            border-radius: 3px;
+        }
+        input:focus{
+            outline-color: blueviolet;
+        }
+        .title{
+            text-align: center;
+            margin-bottom: 80px;
+        }
+    </style>
+</head>
+<body>
+<div th:insert="../static/navigationbar.html" :: header> </div>
+<!--Generic update, send it the number of ids as idNum, the list of field values derived from the record, and a list of column names (fieldNames)-->
+<!--the ids must come first in the field values list-->
+<form th:action="'/products/update'" th:object="${product}" method="post"  >
+    <div>
+        <h1 class="title"> Update record for product # <span th:text="'ID: ' + *{Id}"></span></h1>
+        <input type="hidden" th:field="*{Id}"/>
+<!--        <br  />-->
+
+        <label>Product name</label>
+        <input th:field="*{productName}" />
+        <br />
+
+        <label >Reorder level</label>
+        <input th:field="*{reorderLevel}" />
+        <br />
+
+        <label >Units in stock</label>
+        <input th:field="*{unitsInStock}" />
+        <br />
+
+        <label >Quantity per unit</label>
+        <input th:field="*{quantityPerUnit}" />
+        <br />
+
+        <label >Unit price</label>
+        <input th:field="*{unitPrice}" />
+        <br />
+
+        <label >Units on order</label>
+        <input th:field="*{unitsOnOrder}" />
+
+        <button>Submit</button>
+
+    </div>
+<!--    <div th:each="fieldName, iterStat:${fieldNames}">-->
+<!--        <div th:if="${iterStat.index} < ${idNum} ">-->
+<!--            <h1 > <span th:text="${fieldName} + ': '" /><span th:text="${record[iterStat.index]}" /></h1>-->
+<!--            <input hidden="true" name="fieldName" th:value="${record[iterStat.index]}"  />-->
+<!--        </div>-->
+<!--        <div th:unless="${iterStat.index} < ${idNum} ">-->
+<!--            <label th:text="${fieldName}" />-->
+<!--            <input th:value="${record[iterStat.index]}" th:field="*{record[${iterStat.index}]}  />-->
+<!--        </div>-->
+<!--    </div>-->
+</form>
+
+</body>
+</html>

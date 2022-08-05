@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order from northwind</title>
+</head>
+<body>
+<div th:insert="../static/navigationbar.html" :: header> </div>
+<h1>Order Edit Form</h1>
+<form th:action="@{/orders/*{id}/edit}" th:object="${orderToEdit}" method="POST">
+    <label for="orderDate">Order Date</label>
+    <input type="text" id="orderDate" name="orderDate" th:field="*{orderDate}" /><br/>
+    <label for="requiredDate">Required Date</label>
+    <input type="text" id="requiredDate" name="requiredDate" th:field="*{requiredDate}" /><br/>
+    <label for="shippedDate">Shipped Date</label>
+    <input type="text" id="shippedDate" name="shippedDate" th:field="*{shippedDate}" /><br/>
+    <label for="freight">Freight</label>
+    <input type="text" id="freight" name="freight" th:field="*{freight}" /><br/>
+    <label for="shipName">Ship Name</label>
+    <input type="text" id="shipName" name="shipName" th:field="*{shipName}" /><br/>
+    <label for="shipAddress">Ship Address</label>
+    <input type="text" id="shipAddress" name="shipAddress" th:field="*{shipAddress}" ><br/>
+    <label for="shipCity">Ship City</label>
+    <input type="text" id="shipCity" name="shipCity" th:field="*{shipCity}" ><br/>
+    <label for="shipRegion">Ship Region</label>
+    <input type="text" id="shipRegion" name="shipRegion" th:field="*{shipRegion}" ><br/>
+    <label for="shipPostalCode">Ship Postal Code</label>
+    <input type="text" id="shipPostalCode" name="shipPostalCode" th:field="*{shipPostalCode}" ><br/>
+    <label for="shipCountry">Ship Country</label>
+    <input type="text" id="shipCountry" name="shipCountry" th:field="*{shipCountry}" ><br/>
+
+    <input type="hidden" id="orderID" name="orderID" th:field="*{id}" />
+    <input type="hidden" id="customerID" name="customerID" th:field="*{customerID.id}" />
+    <input type="hidden" id="employeeID" name="employeeID" th:field="*{employeeID.id}" />
+    <input type="hidden" id="shipVia" name="shipVia" th:field="*{shipVia.id}" />
+
+    <input type="submit" value="Submit Update" />
+</form>
+
+</body>
+</html>

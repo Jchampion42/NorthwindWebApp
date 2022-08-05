@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        form{
+            width:80%;
+            margin: 0 auto;
+        }
+        label,
+        input {
+            height: 30px;
+            display: inline-block;
+            padding: 5px;
+        }
+        label {
+            width:30%;
+            text-align: right;
+        }
+        label+input{
+            width: 30%;
+            margin: 0 30% 0 4%;
+        }
+        input+input{
+            float:right;
+        }
+        input{
+            border-width: 0.5px;
+            border-radius: 3px;
+        }
+        input:focus{
+            outline-color: blueviolet;
+        }
+        .title{
+            text-align: center;
+            margin-bottom: 80px;
+        }
+    </style>
+</head>
+<body>
+<div th:insert="../static/navigationbar.html" :: header> </div>
+<!--orderId-->
+<!--productId-->
+<!--unitPrice-->
+<!--Quanity-->
+<!--discount-->
+
+
+<!--Generic update, send it the number of ids as idNum, the list of field values derived from the record, and a list of column names (fieldNames)-->
+<!--the ids must come first in the field values list-->
+<form th:action="@{/orderDetails/{oId}/{pId}/edit}" th:object="${orderDetail}" method="post"  >
+    <div>
+        <h1 class="title"> Update record for Order Detail <span th:text="'Order #: ' + *{id.orderID} + ' Product # ' + *{id.productID}"></span></h1>
+        <input type="hidden" th:field="*{id.orderID}"/>
+        <input type="hidden" th:field="*{id.productID}"/>
+
+        <label>Unit price</label>
+        <input th:field="*{unitPrice}" />
+        <br />
+        <label>Quantity</label>
+        <input th:field="*{quantity}" />
+        <br />
+        <label>Discount</label>
+        <input th:field="*{discount}" />
+        <br />
+        <button>Submit</button>
+
+    </div>
+</form>
+
+</body>
+</html>

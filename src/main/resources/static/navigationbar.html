@@ -1,0 +1,185 @@
+<!Doctype Html >
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<Head>
+    <Title>
+        Make a Navigation Bar
+    </Title>
+    <style type=text/css>
+        body {
+            height: 125vh;
+            margin-top: 80px;
+            padding: 30px;
+            background-size: cover;
+            font-family: sans-serif;
+
+        }
+
+        header {
+            background-color: #813580;
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            z-index: 2;
+
+        }
+
+        header * {
+            display: inline;
+
+        }
+
+        header li {
+            margin: 20px;
+
+        }
+
+        header li a {
+            color: #ffffff;
+            text-decoration: none;
+
+        }
+    </style>
+    <style>
+        .dropbtn {
+            background-color: #813580;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 75px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #dc4747;
+        }
+
+    </style>
+    <style>
+        .sign-in-a{
+            text-decoration: none;
+        }
+    </style>
+</Head>
+<Body>
+<header>
+    <nav>
+        <ul>
+            <div class="dropdown">
+                <button class="dropbtn">Home</button>
+                <div class="dropdown-content">
+                    <a href="/home">Home</a>
+                </div>
+            </div>
+            <div class="dropdown" sec:authorize="hasAuthority('ADMIN')">
+                <button class="dropbtn">Products</button>
+                <div class="dropdown-content">
+                    <a href="/products">Get all</a>
+                </div>
+            </div>
+            <div class="dropdown" sec:authorize="hasAuthority('ADMIN')">
+                <button class="dropbtn">Orders</button>
+                <div class="dropdown-content">
+                    <a href="/orders">Get all</a>
+                </div>
+            </div>
+            <div class="dropdown" sec:authorize="hasAuthority('ADMIN')">
+                <button class="dropbtn">Order Details</button>
+                <div class="dropdown-content">
+                    <a href="/orderDetails">Get all</a>
+                </div>
+            </div>
+            <div class="dropdown" sec:authorize="hasAuthority('ADMIN')">
+                <button class="dropbtn">Shippers</button>
+                <div class="dropdown-content">
+                    <a href="/shippers">Get all</a>
+                </div>
+            </div>
+            <div class="dropdown" sec:authorize="hasAuthority('ADMIN')">
+                <button class="dropbtn">Customers</button>
+                <div class="dropdown-content">
+                    <a href="/customers">Get all</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Shop</button>
+                <div class="dropdown-content">
+                    <a href="/shop">Products</a>
+                </div>
+            </div>
+            <div class="dropdown" sec:authorize="hasAnyAuthority('ADMIN','USER')">
+                <button class="dropbtn">Basket</button>
+                <div class="dropdown-content">
+                    <a href="/shop/basket">View</a>
+                </div>
+            </div>
+            <div class="dropdown" sec:authorize="!isAuthenticated()">
+                <a class="sign-in-a" href="/login"><button class="dropbtn">Sign in</button></a>
+
+
+            </div>
+            <div class="dropdown" sec:authorize="hasAnyAuthority('USER','ADMIN')">
+                <a class="sign-in-a" href="/logout"><button class="dropbtn">Logout</button></a>
+
+
+
+            </div>
+
+        </ul>
+    </nav>
+</header>
+</Body>
+</html>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Home</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="topnav">-->
+<!--    <a class="home" href="home">home</a>-->
+<!--    <a href="product/all">Products</a>-->
+<!--    <a href="order/all">Orders</a>-->
+<!--    <a href="orderDetail/all">Order details</a>-->
+<!--    <a href="shippers/all">Shippers</a>-->
+<!--    <a href="Customers/all">Customers</a>-->
+<!--</div>-->
+
+
+<!--</body>-->
+<!--</html>-->

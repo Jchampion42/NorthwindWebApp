@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Shipper Creation</title>
+</head>
+<body>
+
+<div th:insert="../static/navigationbar.html" :: header> </div>
+<form method="post" th:action="@{/shippers/create}" th:object="${shipper}" >
+  <label for="id">Shipper ID</label>
+  <input type="text" name="id" id="id" th:field="*{id}"/>
+  <br/>
+
+  <label for="companyName">Company Name</label>
+  <input type="text" name="companyName" id="companyName" th:field="*{companyName}"/>
+  <br/>
+
+  <label for="phone">Phone Number</label>
+  <input type="text" name="phone" id="phone" th:field="*{phone}"/>
+  <br/>
+  <button type="submit">Submit</button>
+
+
+</form>
+
+</body>
+</html>

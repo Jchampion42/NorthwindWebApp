@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+    <style>
+        body {
+            margin: 7% 15%;
+        }
+
+        h1 {
+            color: purple;
+            font-size: 100px;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        .checkout-button {
+            background-color: #813580;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            width: 120px;
+            height: 70px;
+            border-radius: 5px;
+
+        }
+
+        .remove-button {
+            background-color: #e34f4f;
+            color: black;
+            padding: 5px;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            width: 85px;
+            height: 40px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .remove-button:hover {
+            outline: 1px black solid;
+
+        }
+
+        td {
+            text-align: center;
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+
+<div th:insert="../static/navigationbar.html" :: header></div>
+<h1>Basket</h1>
+
+<div>
+    <form th:action="'/shop/order-detail/create'" method="post">
+        <button class="checkout-button">Checkout</button>
+    </form>
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th></th>
+        <!--        <th>ID</th>-->
+        <!--        <th> First Name </th>-->
+        <!--        <th>Last Name</th>-->
+    </tr>
+    </thead>
+    <tr th:each="product,iter:${products}">
+        <td th:text="${product.productName}"></td>
+        <td th:text="${product.unitPrice}"></td>
+        <td th:text="${quantity.get(iter.index)}"></td>
+
+        <td>
+            <form th:action="'/shop/delete/' + ${product.id}">
+                <button class="remove-button">Remove</button>
+            </form>
+        </td>
+
+        <!--        <td th:text="hi"></td>-->
+        <!--        <td th:text="hi"></td>-->
+        <!--        <td th:text="hi"></td>-->
+        <!--        <td th:text="hi"></td>-->
+        <!--        <td th:text="hi"></td>-->
+        <!--        <td th:text="hi"></td>-->
+        <!--        <td th:text="hi"></td>-->
+
+    </tr>
+</table>
+
+</body>
+</html>

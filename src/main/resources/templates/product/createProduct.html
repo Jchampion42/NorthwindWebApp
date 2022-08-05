@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" >
+<Head>
+        <meta charset="UTF-8">
+        <title>Products</title>
+</Head>
+<Body>
+<div th:insert="../static/navigationbar.html" :: header> </div>
+<form method="post" th:action="@{/products/create}" th:object="${newProduct}" >
+        <label for="id">Product ID</label>
+        <input type="text" name="id" id="id" th:field="*{id}"/>
+        <br/>
+
+        <label for="productName">ProductName</label>
+        <input type="text" name="productName" id="productName" th:field="*{productName}"/>
+        <br/>
+
+        <label for="supplierID">supplierID</label>
+        <input type="text" name="supplierID" id="supplierID" th:field="*{supplierID}"/>
+        <br/>
+
+        <label for="categoryID">categoryID</label>
+        <input type="text" name="categoryID" id="categoryID" th:field="*{categoryID}"/>
+        <br/>
+
+        <label for="quantityPerUnit">quantityPerUnit</label>
+        <input type="text" name="quantityPerUnit" id="quantityPerUnit" th:field="*{quantityPerUnit}"/>
+        <br/>
+
+        <label for="unitPrice">unitPrice</label>
+        <input type="text" name="unitPrice" id="unitPrice" th:field="*{unitPrice}"/>
+        <br/>
+
+
+        <label for="unitsInStock">unitsInStock</label>
+        <input type="text" name="unitsInStock" id="unitsInStock" th:field="*{unitsInStock}"/>
+        <br/>
+
+
+        <label for="unitsOnOrder">Units On Order</label>
+        <input type="text" name="unitsOnOrder" id="unitsOnOrder" th:field="*{unitsOnOrder}"/>
+        <br/>
+
+
+        <label for="reorderLevel">Reorder Level</label>
+        <input type="text" name="reorderLevel" id="reorderLevel" th:field="*{reorderLevel}"/>
+        <br/>
+
+
+        <label for="discontinued">Discontinued</label>
+        <input type="text" name="discontinued" id="discontinued" th:field="*{discontinued}"/>
+        <br/>
+        <button type="submit">Submit</button>
+
+
+<!--        , , , , unitsOnOrder, reorderLevel, discontinued -->
+
+</form>
+</Body>
+</Html>
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Home</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="topnav">-->
+<!--    <a class="home" href="home">home</a>-->
+<!--    <a href="product/all">Products</a>-->
+<!--    <a href="order/all">Orders</a>-->
+<!--    <a href="orderDetail/all">Order details</a>-->
+<!--    <a href="shippers/all">Shippers</a>-->
+<!--    <a href="Customers/all">Customers</a>-->
+<!--</div>-->
+
+
+<!--</body>-->
+<!--</html>-->

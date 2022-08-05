@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <style>
+        body{
+            margin: 3% 7%;
+        }
+        .product-container{
+            width: 250px;
+            height: 300px;
+            background-color: antiquewhite;
+            display: inline-block;
+            border-radius: 4px;
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+            position: relative;
+
+        }
+        .product-heading{
+            text-align: center;
+            font-size: 22px;
+        }
+
+        .add-button{
+            cursor:pointer;
+            width: 80px;
+            height: 50px;
+            border-radius: 15px;
+            background-color: #3bffb5;
+            outline: none;
+            border: none;
+            margin: auto;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 10px;
+
+        }
+        .add-button:hover{
+            outline: solid 1px forestgreen;
+        }
+        .mini-basket{
+            width: 86%;
+            height: 130px;
+            background-color: white;
+            outline: solid 1px purple;
+            border-radius: 3px;
+            padding-top: 7px;
+            padding-bottom: 7px;
+            padding-left: 10px;
+            padding-right: 10px;
+            overflow:scroll;
+            margin: auto;
+            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+        .mini-product-container{
+            display: inline-block;
+            width: 200px;
+            height: 100px;
+            font-size: 14px;
+            border-radius: 3px;
+            background-color: whitesmoke;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+        .mini-basket-item{
+            text-align: center;
+            margin: auto;
+            margin-top: 10px;
+
+        }
+        .collection{
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+    </style>
+</head>
+<body>
+<div th:insert="../static/navigationbar.html" :: header> </div>
+<h1> Hi from shop </h1><br>
+
+<div th:if="${products.size() > 0}" class="mini-basket">
+    <div class="mini-product-container" th:each="item, iter:${products}">
+        <p class="mini-basket-item" th:text="${item.productName}"></p>
+        <p class="mini-basket-item" th:text="${quantity[iter.index]}"></p>
+    </div>
+</div>
+
+<h1 class="title"> Basket</h1>
+    <div class="collection">
+        <div class="product-container" th:each="product:${allProducts}">
+            <p class="product-heading" th:text="${product.productName}"/>
+            <p class="product-detail" th:text="'Price: ' + &#8383; + ${product.unitPrice}"/>
+            <p class="product-detail" th:text="${product.quantityPerUnit}" />
+            <form th:action="'/shop/add' + '/' + ${product.id}" method="get">
+                <div class="button-wrapper">
+                    <div>
+                        <button class="add-button">Add to Basket</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

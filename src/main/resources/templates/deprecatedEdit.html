@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="../static/navigationbar.html" :: header> </div>
+<h1> Update Record</h1>
+
+<h1 hidden="true"> Hello </h1>
+
+
+<!--Generic update, send it the number of ids as idNum, the list of field values derived from the record, and a list of column names (fieldNames)-->
+<!--the ids must come first in the field values list-->
+<form th:action="'/' + ${source} + '/update'" th:object="${record}" method="post">
+    <div th:each="fieldName, iterStat:${fieldNames}">
+        <div th:if="${iterStat.index} < ${idNum} ">
+            <h1><span th:text="${fieldName} + ': '"/><span th:text="${record[iterStat.index]}"/></h1>
+            <input hidden="true" name="fieldName" th:value="${record[iterStat.index]}"/>
+        </div>
+        <div th:unless="${iterStat.index} < ${idNum}">
+            <label th:text="${fieldName}"/>
+            <input th:value="${record[iterStat.index]}" th:field="*{record[${iterStat.index}]}"/>
+        </div>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>
